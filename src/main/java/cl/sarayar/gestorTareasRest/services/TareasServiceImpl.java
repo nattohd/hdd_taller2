@@ -2,6 +2,7 @@ package cl.sarayar.gestorTareasRest.services;
 
 import java.util.List;
 
+import cl.sarayar.gestorTareasRest.repositories.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,12 @@ import cl.sarayar.gestorTareasRest.repositories.TareasRepository;
 @Service
 public class TareasServiceImpl implements TareasService {
 
-	@Autowired
 	private TareasRepository tareasRepository;
-	
+
+	@Autowired
+	public TareasServiceImpl(cl.sarayar.gestorTareasRest.repositories.TareasRepository tareasRepository){
+		this.tareasRepository=tareasRepository;
+	}
 	@Override
 	public List<Tarea> findAll() {
 		return tareasRepository.findAll();

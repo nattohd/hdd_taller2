@@ -2,6 +2,9 @@ package cl.sarayar.gestorTareasRest.controllers;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import cl.sarayar.gestorTareasRest.services.UsuariosService;
+import cl.sarayar.gestorTareasRest.utils.JwtUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +25,15 @@ import cl.sarayar.gestorTareasRest.services.TareasService;
 @RestController
 @RequestMapping("/tareas")
 public class TareasController {
-	
-	@Autowired
+
 	private TareasService tareasService;
+	@Autowired
+	public TareasController(TareasService tareasService){
+		this.tareasService=tareasService;
+	}
+
+	@Autowired
+	JwtUtils jwtUtils;
 
 	@GetMapping("/get")
 	public List<Tarea> getAll(){

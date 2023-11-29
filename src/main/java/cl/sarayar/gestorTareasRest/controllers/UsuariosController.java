@@ -26,8 +26,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @RequestMapping("/usuarios")
 public class UsuariosController {
 
+	private UsuariosService usService;
 	@Autowired
-	UsuariosService usService;
+	public UsuariosController(UsuariosService usuariosService){
+		this.usService=usuariosService;
+	}
+
 	@Autowired
 	JwtUtils jwtUtils;
 
@@ -52,7 +56,7 @@ public class UsuariosController {
 	}
 
 	@PostMapping("/actualizar")
-	ResponseEntity<?> actualizarUsuario( @RequestBody Usuario usuario) {
+	public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario usuario) {
 		Usuario usuarioOriginal = usService.findById(usuario.getId());
 		Usuario usuarioConCorreo = this.usService.findByCorreo(usuario.getCorreo());
 		if (usuarioConCorreo!= null && !usuarioConCorreo.getId().equals(usuario.getId())) {

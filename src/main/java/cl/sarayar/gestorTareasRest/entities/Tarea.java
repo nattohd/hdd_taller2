@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,13 +15,13 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+@Generated
 @Getter
 @Setter
 @ToString
 @Document(collection = "tareas")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tarea {
 
 	@Transient
